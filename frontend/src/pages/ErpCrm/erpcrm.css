@@ -1,0 +1,229 @@
+/* =========================================
+   ERP / CRM — SHARED STYLES
+========================================= */
+
+.ec {
+  --red: #a40012;
+  --red-dark: #7d000e;
+  --red-bright: #d4192a;
+  --ink: #111114;
+  --muted: #5d5d68;
+  --line: rgba(17, 17, 20, 0.08);
+  --tint: #fbf3f3;
+
+  position: relative;
+  overflow: hidden;
+  color: var(--ink);
+  background: linear-gradient(180deg, #fff 0%, var(--tint) 100%);
+  font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.ec *,
+.ec *::before,
+.ec *::after {
+  box-sizing: border-box;
+}
+
+.ec button {
+  font-family: inherit;
+}
+
+.ec-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.ec-section {
+  padding: clamp(64px, 8vw, 110px) 0;
+}
+
+/* reveal */
+
+.ec-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* pill */
+
+.ec-pill {
+  display: inline-block;
+  padding: 11px 24px;
+  border: 1px solid rgba(164, 0, 18, 0.12);
+  border-radius: 50px;
+  color: var(--red);
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(164, 0, 18, 0.08);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* headings */
+
+.ec h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.ec h2 em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.ec-lead {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* buttons */
+
+.ec-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.ec-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 36px;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ec-btn:hover {
+  transform: translateY(-3px);
+}
+
+.ec-btn-red {
+  background: linear-gradient(120deg, var(--red-dark), var(--red));
+  box-shadow: 0 16px 30px rgba(164, 0, 18, 0.28);
+}
+
+.ec-btn-red:hover {
+  box-shadow: 0 22px 38px rgba(164, 0, 18, 0.38);
+}
+
+.ec-btn-dark {
+  background: var(--ink);
+  box-shadow: 0 16px 30px rgba(17, 17, 20, 0.2);
+}
+
+/* image fallback */
+
+.ec-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 220px;
+  color: rgba(164, 0, 18, 0.55);
+  background:
+    linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.7) 50%, transparent 70%),
+    #f4e9e9;
+  background-size: 200% 100%, auto;
+  animation: ecShimmer 2.4s linear infinite;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes ecShimmer {
+  from { background-position: 200% 0, 0 0; }
+  to { background-position: -200% 0, 0 0; }
+}
+
+/* 3D shapes (image or CSS fallback) */
+
+.ec-shape-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ec-shape {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.ec-shape-swirl {
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #7d000e, #ff8aa0, #f6e3c8, #c4101f, #2a0006, #e11d2e, #ffd2c4, #7d000e);
+  -webkit-mask: radial-gradient(circle, transparent 26%, #000 27%);
+  mask: radial-gradient(circle, transparent 26%, #000 27%);
+  animation: ecSpin 22s linear infinite;
+}
+
+.ec-shape-ring {
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #f4f4f6, #6c6c74, #fff, #3b3b42, #cfcfd6, #f4f4f6);
+  -webkit-mask: radial-gradient(circle, transparent 52%, #000 53%);
+  mask: radial-gradient(circle, transparent 52%, #000 53%);
+  animation: ecSpin 30s linear infinite reverse;
+}
+
+.ec-shape-fan {
+  border-radius: 50%;
+  background: repeating-conic-gradient(#f2f2f5 0 12deg, #3a3a42 12deg 24deg);
+  -webkit-mask: radial-gradient(circle, #000 18%, #000 19%);
+  animation: ecSpin 12s linear infinite;
+}
+
+.ec-shape-c {
+  border: 0.26em solid #26262c;
+  border-right-color: transparent;
+  border-radius: 50%;
+  font-size: 5rem;
+  transform: rotate(-35deg);
+}
+
+.ec-shape-cube {
+  border-radius: 18%;
+  background: linear-gradient(135deg, #5b5b63, #050507 65%);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+  transform: rotate(18deg);
+}
+
+@keyframes ecSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ecFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec *,
+  .ec *::before,
+  .ec *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ec-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

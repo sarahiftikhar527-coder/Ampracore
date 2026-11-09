@@ -1,0 +1,403 @@
+
+.ec-track {
+  overflow-x: clip;
+  padding-top: 0;
+  margin-top: -45px;
+}
+
+.ec-track-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 96px);
+}
+
+/* ---------- Copy ---------- */
+
+.ec-track-copy h2 {
+  max-width: 480px;
+  margin: 18px 0 0;
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  color: #d50818;
+}
+
+.ec-w {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  padding: 0.08em 0 0.14em;
+  margin: -0.08em 0 -0.14em;
+}
+
+.ec-w > span {
+  display: inline-block;
+  transform: translateY(115%);
+}
+
+.ec-track.is-seen .ec-w > span {
+  animation: ecWord 0.95s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(0.15s + var(--i) * 0.08s) both;
+}
+
+@keyframes ecWord {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.ec-track-copy .ec-lead {
+  max-width: 430px;
+  margin: 14px 0 24px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-weight: 400;
+  color: #666;
+}
+
+/* ---------- Tab list ---------- */
+
+.ec-track-list {
+  display: grid;
+  gap: 2px;
+}
+
+.ec-track-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 8px 14px 26px;
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.ec-track.is-seen .ec-track-item {
+  animation: ecItemIn 0.85s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(0.5s + var(--i) * 0.12s) both;
+}
+
+@keyframes ecItemIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ec-track-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.09);
+}
+
+.ec-track-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: ecFill linear forwards;
+}
+
+.ec-track[data-play="false"] .ec-track-fill {
+  animation-play-state: paused;
+}
+
+.ec-track[data-motion="reduced"] .ec-track-fill {
+  animation: none;
+  transform: scaleY(1);
+}
+
+@keyframes ecFill {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.ec-track-item:focus-visible {
+  outline: 2px solid var(--red-bright);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.ec-track-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--red);
+  background: color-mix(in srgb, var(--red) 9%, transparent);
+  transition: color 0.4s ease, background-color 0.4s ease,
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s ease;
+}
+
+.ec-track-item:hover .ec-track-icon {
+  transform: scale(1.08);
+}
+
+.ec-track-item.is-active .ec-track-icon {
+  color: #fff;
+  background: var(--red);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--red) 32%, transparent);
+}
+
+.ec-track-text {
+  display: block;
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.ec-track-text b {
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: color-mix(in srgb, currentColor 52%, transparent);
+  transition: color 0.4s ease;
+}
+
+.ec-track-item:hover .ec-track-text b,
+.ec-track-item.is-active .ec-track-text b {
+  color: inherit;
+}
+
+.ec-track-more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-track-more small {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.45s ease 0.1s, transform 0.55s ease 0.1s;
+}
+
+.ec-track-item.is-active .ec-track-more {
+  grid-template-rows: 1fr;
+}
+
+.ec-track-item.is-active .ec-track-more small {
+  margin-top: 6px;
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Screenshot stage ---------- */
+
+.ec-track-stage {
+  position: relative;
+  isolation: isolate;
+  perspective: 1400px;
+}
+
+.ec-track-halo {
+  position: absolute;
+  inset: 6% -8% -10% 8%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--red) 34%, transparent),
+    transparent
+  );
+  filter: blur(42px);
+  opacity: 0.75;
+  transform: translate(calc(var(--i, 0) * 5%), calc(var(--i, 0) * -4%));
+  transition: transform 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-track-float {
+  animation: ecFloat 9s ease-in-out infinite;
+}
+
+@keyframes ecFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.ec-track-frame {
+  position: relative;
+  display: grid;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--red) 14%, transparent);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow:
+    0 60px 100px -36px color-mix(in srgb, var(--red) 45%, transparent),
+    0 22px 40px -22px rgba(0, 0, 0, 0.22);
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.ec-track-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(
+    520px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.3),
+    transparent 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.ec-track-stage:hover .ec-track-frame::after {
+  opacity: 1;
+}
+
+.ec-track-shot {
+  position: relative;
+  grid-area: 1 / 1;
+  z-index: 1;
+  min-height: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0s linear 0.95s;
+}
+
+.ec-track-shot img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.1);
+  transition: transform 0s linear 0.95s;
+}
+
+.ec-track-shot.is-active {
+  z-index: 2;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.95s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.ec-track-shot.is-active img {
+  transform: scale(1);
+  transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-track-shot:not(.is-active) {
+  clip-path: inset(0 100% 0 0);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+  .ec-track {
+    margin-top: -30px;
+  }
+
+  .ec-track-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ec-track-copy h2,
+  .ec-track-copy .ec-lead {
+    max-width: none;
+  }
+
+  .ec-track-frame {
+    border-radius: 22px;
+  }
+
+  .ec-track-halo {
+    inset: 10% -4% -6% 4%;
+  }
+}
+
+@media (max-width: 560px) {
+  .ec-track {
+    margin-top: -15px;
+  }
+
+  .ec-track-copy h2 {
+    font-size: 1.4rem;
+  }
+
+  .ec-track-copy .ec-lead {
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  .ec-track-item {
+    gap: 14px;
+    padding-left: 22px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-w > span {
+    transform: none;
+    animation: none !important;
+  }
+
+  .ec-track-item {
+    opacity: 1;
+    animation: none !important;
+  }
+
+  .ec-track-float {
+    animation: none;
+  }
+
+  .ec-track-frame,
+  .ec-track-halo,
+  .ec-track-more,
+  .ec-track-more small,
+  .ec-track-icon {
+    transition: none;
+  }
+
+  .ec-track-shot,
+  .ec-track-shot.is-active,
+  .ec-track-shot img,
+  .ec-track-shot.is-active img {
+    transition: none;
+  }
+}

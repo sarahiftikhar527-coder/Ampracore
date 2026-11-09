@@ -1,0 +1,584 @@
+
+/* =========================================
+   INSIGHTS & UPDATES
+========================================= */
+
+.ins {
+  --ins-red: #c40d14;
+  --ins-red-dark: #8f090e;
+  --ins-red-rgb: 196, 13, 20;
+  --ins-text: #14161c;
+  --ins-muted: #5d6370;
+  --sx: 0;
+  --sy: 0;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: 72px 24px 82px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  font-family: "Poppins", sans-serif;
+  color: var(--ins-text);
+
+  background-color: #fafafa;
+  background-image:
+    radial-gradient(
+      circle at 10% 12%,
+      rgba(var(--ins-red-rgb), 0.05),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 92% 90%,
+      rgba(var(--ins-red-rgb), 0.06),
+      transparent 38%
+    );
+}
+
+.ins *,
+.ins *::before,
+.ins *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SIDE IMAGES
+========================================= */
+
+.ins__shape {
+  position: absolute;
+  z-index: -1;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  opacity: 0.82;
+
+  animation: insFloat 7s ease-in-out infinite;
+  transition: transform 0.35s ease;
+}
+
+.ins__shape--left {
+  top: 130px;
+  left: -35px;
+  transform: translate3d(
+    calc(var(--sx) * -10px),
+    calc(var(--sy) * -12px),
+    0
+  );
+}
+
+.ins__shape--right {
+  right: -35px;
+  bottom: 50px;
+  animation-delay: -3.5s;
+  transform: translate3d(
+    calc(var(--sx) * 10px),
+    calc(var(--sy) * 12px),
+    0
+  );
+}
+
+.ins__shape img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+
+  /* Removed glow and shadow from both shapes */
+  filter: none;
+}
+
+/* Mirror the bottom-right shape */
+.ins__shape--right img {
+  transform: scaleX(-1);
+  animation: insRightFloat 7s ease-in-out infinite;
+}
+
+/* Right shape: gentle floating + rotation */
+@keyframes insRightFloat {
+  0%,
+  100% {
+    transform: scaleX(-1) translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: scaleX(-1) translateY(-13px) rotate(-7deg);
+  }
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.ins__head {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.ins__eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--ins-red);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.ins__title {
+  margin: 0;
+  color: #15151a;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.9px;
+}
+
+.ins__amp {
+  color: var(--ins-red);
+}
+
+.ins__rule {
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 13px auto;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--ins-red-dark), #ed3038);
+}
+
+.ins__sub {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--ins-muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* =========================================
+   CARD GRID
+========================================= */
+
+.ins__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  width: 100%;
+  max-width: 830px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.ins-r,
+.ins-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.2, 0.75, 0.25, 1);
+  transition-delay: var(--d, 0ms);
+}
+
+.ins.is-in .ins-r,
+.ins.is-in .ins-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ins-item {
+  min-width: 0;
+  perspective: 1000px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.ins-card {
+  --rx: 0deg;
+  --ry: 0deg;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+
+  border: 1px solid rgba(25, 25, 30, 0.075);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 7px 22px rgba(20, 20, 30, 0.055),
+    0 1px 3px rgba(20, 20, 30, 0.035);
+
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.ins-card:hover {
+  border-color: rgba(var(--ins-red-rgb), 0.22);
+  box-shadow:
+    0 18px 35px rgba(20, 20, 30, 0.11),
+    0 5px 12px rgba(var(--ins-red-rgb), 0.055);
+}
+
+/* =========================================
+   CARD IMAGE
+========================================= */
+
+.ins-card__media {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  height: 155px;
+  overflow: hidden;
+  background: #eeeef0;
+  text-decoration: none;
+}
+
+.ins-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.ins-card:hover .ins-card__media img {
+  transform: scale(1.055);
+}
+
+/* Soft shade at the bottom of the image */
+
+.ins-card__media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.02) 45%,
+    rgba(0, 0, 0, 0.19) 100%
+  );
+}
+
+.ins-card__go {
+  position: absolute;
+  z-index: 1;
+  right: 11px;
+  bottom: 11px;
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background: var(--ins-red);
+
+  opacity: 0;
+  transform: translateY(6px) rotate(-12deg);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ins-card:hover .ins-card__go {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.ins-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px 15px 14px;
+}
+
+.ins-card__cat {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 9px;
+  padding: 4px 8px;
+
+  color: var(--ins-red);
+  border: 1px solid rgba(var(--ins-red-rgb), 0.12);
+  border-radius: 5px;
+  background: rgba(var(--ins-red-rgb), 0.055);
+
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+.ins-card__title {
+  margin: 0 0 15px;
+  color: #18191e;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: -0.2px;
+  overflow-wrap: anywhere;
+  transition: color 0.25s ease;
+}
+
+.ins-card:hover .ins-card__title {
+  color: var(--ins-red-dark);
+}
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.ins-card__foot {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(20, 20, 30, 0.075);
+}
+
+.ins-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  color: var(--ins-red);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+
+  transition:
+    color 0.25s ease,
+    gap 0.25s ease;
+}
+
+.ins-btn:hover {
+  gap: 9px;
+  color: var(--ins-red-dark);
+}
+
+.ins-btn svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.25s ease;
+}
+
+.ins-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+  .ins {
+    padding: 64px 22px 72px;
+  }
+
+  .ins__grid {
+    max-width: 800px;
+    gap: 18px;
+  }
+
+  .ins-card__media {
+    height: 140px;
+  }
+
+  .ins-card__body {
+    padding: 13px 12px 12px;
+  }
+
+  .ins-card__title {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .ins__shape {
+    width: 115px;
+    height: 115px;
+    opacity: 0.65;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 680px) {
+  .ins {
+    padding: 52px 18px 60px;
+  }
+
+  .ins__head {
+    margin-bottom: 27px;
+  }
+
+  .ins__title {
+    font-size: 26px;
+    letter-spacing: -0.6px;
+  }
+
+  .ins__sub {
+    max-width: 420px;
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .ins__grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 350px;
+    gap: 20px;
+  }
+
+  .ins-card {
+    border-radius: 13px;
+  }
+
+  .ins-card__media {
+    height: 175px;
+  }
+
+  .ins-card__body {
+    padding: 15px;
+  }
+
+  .ins-card__cat {
+    margin-bottom: 8px;
+    font-size: 9px;
+  }
+
+  .ins-card__title {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .ins-card__foot {
+    padding-top: 11px;
+  }
+
+  .ins-btn {
+    font-size: 11px;
+  }
+
+  .ins__shape {
+    width: 78px;
+    height: 78px;
+    opacity: 0.42;
+  }
+
+  .ins__shape--left {
+    top: 105px;
+    left: -25px;
+  }
+
+  .ins__shape--right {
+    right: -25px;
+    bottom: 25px;
+  }
+
+  /* No hover on touch screens, so the arrow stays visible */
+  .ins-card__go {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================
+   EXTRA-SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .ins {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .ins__title {
+    font-size: 23px;
+  }
+
+  .ins__grid {
+    max-width: 310px;
+  }
+
+  .ins-card__media {
+    height: 150px;
+  }
+
+  .ins-card__body {
+    padding: 12px;
+  }
+
+  .ins-card__title {
+    font-size: 13px;
+  }
+}
+
+/* =========================================
+   FLOATING SIDE IMAGES
+========================================= */
+
+@keyframes insFloat {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -12px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ins *,
+  .ins *::before,
+  .ins *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ins-r,
+  .ins-item {
+    opacity: 1;
+    transform: none;
+  }
+}

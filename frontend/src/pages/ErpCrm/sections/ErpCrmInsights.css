@@ -1,0 +1,733 @@
+
+/* =========================================
+   ERP / CRM INSIGHTS - PREMIUM REDESIGN
+========================================= */
+
+.ec-ins {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(212, 25, 42, 0.045) 0%,
+      rgba(212, 25, 42, 0.018) 28%,
+      transparent 60%
+    ),
+    #ffffff;
+}
+
+/* ---------- Background decoration ---------- */
+
+.ec-ins-blob,
+.ec-ins-dots {
+  display: none !important;
+}
+
+.ec-ins .ec-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Layout ---------- */
+
+.ec-ins-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* ---------- Left copy ---------- */
+
+.ec-ins-copy h2 {
+  margin: 0 0 22px;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+.ec-ins-line {
+  display: block;
+}
+
+.ec-ins-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+}
+
+.ec-ins-w > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i) * 0.12s + 0.1s);
+}
+
+.ec-ins.is-live .ec-ins-w > span {
+  transform: translateY(0);
+}
+
+.ec-ins-copy h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #a40012, #ff4d5e, #a40012);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: ecInsShine 4.5s linear infinite;
+}
+
+.ec-ins-copy .ec-lead {
+  max-width: 460px;
+  margin: 0 0 34px;
+}
+
+/* ---------- Button ---------- */
+
+.ec-ins-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 235px;
+  min-height: 54px;
+  padding: 0 27px;
+  font-size: 0.88rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.ec-ins-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: ecInsBtnShine 3.4s ease-in-out infinite;
+}
+
+.ec-ins-btn span,
+.ec-ins-btn svg {
+  position: relative;
+  z-index: 1;
+}
+
+.ec-ins-btn svg {
+  transition: transform 0.35s ease;
+}
+
+.ec-ins-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(164, 0, 18, 0.24);
+}
+
+.ec-ins-btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* ---------- Right visual ---------- */
+
+.ec-ins-stage {
+  width: 100%;
+}
+
+.ec-ins-hit {
+  width: 100%;
+}
+
+.ec-ins-visual {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  min-height: 580px;
+}
+
+/* Decorative rings */
+
+.ec-ins-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.ec-ins-ring--1 {
+  width: 92%;
+  aspect-ratio: 1;
+  border: 1.5px dashed rgba(212, 25, 42, 0.18);
+  animation: ecInsSpin 40s linear infinite;
+}
+
+.ec-ins-ring--2 {
+  width: 72%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(212, 25, 42, 0.12);
+  animation: ecInsSpin 26s linear infinite reverse;
+}
+
+.ec-ins-ring--2 i {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--red, #d4192a);
+  box-shadow:
+    0 0 0 5px rgba(212, 25, 42, 0.12),
+    0 0 18px rgba(212, 25, 42, 0.4);
+}
+
+.ec-ins-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 25, 42, 0.13),
+    transparent 65%
+  );
+  translate: -50% -50%;
+  animation: ecInsPulseGlow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---------- Main card ---------- */
+
+.ec-ins-main {
+  position: absolute;
+  top: 6%;
+  left: 24%;
+  z-index: 1;
+  width: 52%;
+  padding: 36px 20px 28px;
+  border: 1px solid rgba(164, 0, 18, 0.08);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 35px 75px rgba(164, 0, 18, 0.12);
+  text-align: center;
+  transform:
+    perspective(1000px)
+    rotateY(calc(var(--px) * 9deg))
+    rotateX(calc(var(--py) * -9deg));
+  transition: transform 0.25s ease-out;
+  opacity: 0;
+  translate: 0 40px;
+  scale: 0.94;
+}
+
+.ec-ins.is-live .ec-ins-main {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition:
+    transform 0.25s ease-out,
+    opacity 0.9s ease 0.2s,
+    translate 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s,
+    scale 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+}
+
+.ec-live-badge {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red, #d4192a);
+  background: #fbe9ea;
+}
+
+.ec-live-badge i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red, #d4192a);
+  animation: ecInsLive 1.6s ease-out infinite;
+}
+
+/* ---------- Donut ---------- */
+
+.ec-donut {
+  position: relative;
+  width: 78%;
+  margin: 8px auto 22px;
+  aspect-ratio: 1;
+}
+
+.ec-donut svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ec-donut circle {
+  fill: none;
+}
+
+.ec-donut-ticks {
+  stroke: rgba(164, 0, 18, 0.24);
+  stroke-width: 1.5;
+  stroke-dasharray: 1 7;
+  transform-origin: center;
+  animation: ecInsSpin 30s linear infinite;
+}
+
+.ec-donut-bg {
+  stroke: rgba(164, 0, 18, 0.1);
+  stroke-width: 15;
+}
+
+.ec-donut-bar {
+  stroke: url(#ecInsGrad);
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke-dasharray: 515;
+  stroke-dashoffset: 515;
+  filter: drop-shadow(0 4px 8px rgba(164, 0, 18, 0.25));
+  transition: stroke-dashoffset 2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
+}
+
+.ec-ins.is-live .ec-donut-bar {
+  stroke-dashoffset: 21;
+}
+
+.ec-donut span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--red, #d4192a);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- Legend ---------- */
+
+.ec-legend {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.88rem;
+  color: #43434d;
+}
+
+.ec-legend li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ec-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red, #d4192a);
+}
+
+.ec-legend .ec-dot-soft {
+  background: #f1b6bc;
+}
+
+.ec-ins-main p {
+  margin: 0;
+  color: var(--muted, #6b6b6b);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.ec-ins-main strong {
+  color: var(--red, #d4192a);
+}
+
+/* ---------- Mini cards ---------- */
+
+.ec-mini {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 14px;
+  border: 1px solid rgba(164, 0, 18, 0.07);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 22px 45px rgba(164, 0, 18, 0.11);
+  animation: ecInsFloat 6s ease-in-out infinite;
+  translate:
+    calc(var(--px) * var(--d, 20) * 1px)
+    calc(var(--py) * var(--d, 20) * 1px);
+  opacity: 0;
+  scale: 0.8;
+  transition:
+    translate 0.3s ease-out,
+    opacity 0.7s ease,
+    scale 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-ins.is-live .ec-mini {
+  opacity: 1;
+  scale: 1;
+}
+
+.ec-ins.is-live .ec-mini-clients {
+  transition-delay: 0s, 0.7s, 0.7s;
+}
+
+.ec-ins.is-live .ec-mini-impression {
+  transition-delay: 0s, 0.9s, 0.9s;
+}
+
+.ec-ins.is-live .ec-mini-earnings {
+  transition-delay: 0s, 1.1s, 1.1s;
+}
+
+.ec-mini small {
+  display: block;
+  color: var(--muted, #6b6b6b);
+  font-size: 0.78rem;
+}
+
+.ec-mini b {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ec-mini-icon {
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: var(--red, #d4192a);
+  background: #fbe9ea;
+}
+
+.ec-mini-icon-solid {
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d5e, #a40012);
+}
+
+.ec-mini-icon-solid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(212, 25, 42, 0.5);
+  animation: ecInsRipple 2.4s ease-out infinite;
+}
+
+.ec-mini-clients {
+  top: 0;
+  right: 0;
+  animation-delay: 0.4s;
+}
+
+.ec-mini-impression {
+  top: 42%;
+  left: 0;
+  animation-delay: 1.4s;
+}
+
+.ec-mini-earnings {
+  right: 2%;
+  bottom: 2%;
+  animation-delay: 2.2s;
+}
+
+/* ---------- Sparkline ---------- */
+
+.ec-spark {
+  width: 70px;
+  height: 30px;
+  margin-left: 6px;
+  overflow: visible;
+}
+
+.ec-spark polyline {
+  fill: none;
+  stroke: var(--red, #d4192a);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.ec-spark-area {
+  fill: url(#ecSparkFill);
+  opacity: 0;
+  transition: opacity 1s ease 1.8s;
+}
+
+.ec-ins.is-live .ec-spark polyline {
+  animation: ecInsDraw 1.8s ease 1s forwards;
+}
+
+.ec-ins.is-live .ec-spark-area {
+  opacity: 1;
+}
+
+/* ---------- Earnings bars ---------- */
+
+.ec-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 34px;
+  margin-left: 6px;
+}
+
+.ec-bars i {
+  display: block;
+  width: 5px;
+  height: var(--h);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ff4d5e, #a40012);
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+
+.ec-ins.is-live .ec-bars i {
+  animation: ecInsBar 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(1.5s + var(--i) * 0.09s);
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes ecInsFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes ecInsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ecInsShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes ecInsPulseGlow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes ecInsLive {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 25, 42, 0.55);
+  }
+
+  100% {
+    box-shadow: 0 0 0 9px rgba(212, 25, 42, 0);
+  }
+}
+
+@keyframes ecInsRipple {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes ecInsDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ecInsBar {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes ecInsBtnShine {
+  0%, 60% {
+    left: -70%;
+  }
+
+  100% {
+    left: 130%;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+  .ec-ins-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .ec-ins-copy {
+    text-align: center;
+  }
+
+  .ec-ins-copy .ec-lead {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .ec-ins-visual {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .ec-ins-ring,
+  .ec-ins-glow {
+    display: none;
+  }
+
+  .ec-ins-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-height: 0;
+  }
+
+  .ec-ins-main,
+  .ec-mini {
+    position: static;
+    width: 100%;
+    max-width: 340px;
+    animation: none;
+    translate: none;
+  }
+
+  .ec-ins-main {
+    transform: none;
+  }
+
+  .ec-mini {
+    justify-content: flex-start;
+  }
+
+  .ec-ins.is-live .ec-mini,
+  .ec-ins.is-live .ec-ins-main {
+    translate: none;
+  }
+
+  .ec-ins-btn {
+    min-width: 235px;
+    min-height: 52px;
+    padding: 0 24px;
+    font-size: 0.84rem;
+  }
+}
+
+/* ---------- Touch devices ---------- */
+
+@media (hover: none) {
+  .ec-ins-main {
+    transform: none;
+  }
+
+  .ec-mini {
+    translate: none;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-ins-ring,
+  .ec-ins-glow,
+  .ec-ins-btn::before,
+  .ec-ins-copy h2 em,
+  .ec-mini,
+  .ec-mini-icon-solid::after,
+  .ec-live-badge i,
+  .ec-donut-ticks {
+    animation: none;
+  }
+
+  .ec-ins-w > span {
+    transform: none;
+    transition: none;
+  }
+
+  .ec-ins-main,
+  .ec-mini {
+    opacity: 1;
+    translate: none;
+    scale: 1;
+  }
+
+  .ec-donut-bar {
+    stroke-dashoffset: 21;
+    transition: none;
+  }
+
+  .ec-spark polyline {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .ec-spark-area {
+    opacity: 1;
+  }
+
+  .ec-bars i {
+    transform: scaleY(1);
+    animation: none;
+  }
+}

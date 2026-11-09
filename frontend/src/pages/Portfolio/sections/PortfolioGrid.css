@@ -1,0 +1,339 @@
+/* =========================================
+   PORTFOLIO GRID
+========================================= */
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.pf-cell {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+}
+
+.pf-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 360px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: inherit;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
+}
+
+.pf-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(196, 16, 31, 0.28);
+  box-shadow: 0 18px 36px rgba(196, 16, 31, 0.12);
+}
+
+.pf-card:focus-visible {
+  outline: 2px solid var(--red-bright);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   CARD IMAGE
+========================================= */
+
+.pf-card-media {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(100% - 16px);
+  height: 165px;
+  margin: 8px 8px 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f1eaea;
+}
+
+.pf-card-media img,
+.pf-card-media .pf-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pf-card:hover .pf-card-media img,
+.pf-card:hover .pf-card-media .pf-fallback {
+  transform: scale(1.045);
+}
+
+.pf-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(143, 0, 16, 0.28)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.pf-card:hover .pf-card-media::after {
+  opacity: 1;
+}
+
+/* =========================================
+   CARD INDEX
+========================================= */
+
+.pf-card-index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 4px 8px;
+  border-radius: 30px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.94);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   CARD ARROW
+========================================= */
+
+.pf-card-go {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--red-bright);
+  box-shadow: 0 6px 15px rgba(196, 16, 31, 0.25);
+  opacity: 0;
+  transform: translate(5px, 5px) scale(0.9);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.pf-card:hover .pf-card-go {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.pf-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 15px 16px 17px;
+}
+
+/* =========================================
+   CATEGORY - NO BACKGROUND
+========================================= */
+
+.pf-card .pf-chip,
+.pf-card-body .pf-chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #c4101f !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  font-size: 0.62rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* =========================================
+   PROJECT TITLE
+========================================= */
+
+.pf-card-body h3 {
+  display: -webkit-box;
+  width: 100%;
+  margin: 10px 0 6px;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* =========================================
+   PROJECT DESCRIPTION
+========================================= */
+
+.pf-card-body p {
+  display: -webkit-box;
+  width: 100%;
+  min-height: 52px;
+  margin: 0 0 13px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* =========================================
+   TECHNOLOGY TAGS - NO BOXES
+========================================= */
+
+.pf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-tags li {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  color: #6b6b76;
+  background: transparent;
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1400px) {
+  .pf-grid {
+    gap: 26px;
+  }
+
+  .pf-card {
+    min-height: 390px;
+  }
+
+  .pf-card-media {
+    height: 185px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+  .pf-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .pf-card {
+    min-height: 350px;
+  }
+
+  .pf-card-media {
+    height: 175px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+  .pf-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .pf-card {
+    min-height: 0;
+    border-radius: 16px;
+  }
+
+  .pf-card-media {
+    height: 210px;
+  }
+
+  .pf-card-body {
+    padding: 15px;
+  }
+
+  .pf-card-body h3 {
+    font-size: 1rem;
+  }
+
+  .pf-card-body p {
+    min-height: 0;
+    font-size: 0.8rem;
+  }
+
+  .pf-card-go {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-card,
+  .pf-card-media img,
+  .pf-card-media .pf-fallback,
+  .pf-card-media::after,
+  .pf-card-go {
+    transition: none;
+  }
+
+  .pf-card:hover {
+    transform: none;
+  }
+}

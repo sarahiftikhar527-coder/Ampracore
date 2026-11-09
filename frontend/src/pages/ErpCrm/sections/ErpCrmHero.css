@@ -1,0 +1,435 @@
+
+/* =========================================
+   ERP CRM HERO
+========================================= */
+
+.ec-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 25px 0 40px;
+  margin-top: -25px;
+  background: #ffffff;
+}
+
+/* Subtle red background accent */
+
+.ec-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -180px;
+  left: -160px;
+  width: 520px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse,
+    rgba(196, 16, 31, 0.055) 0%,
+    rgba(196, 16, 31, 0.018) 42%,
+    transparent 72%
+  );
+}
+
+/* =========================================
+   HERO GRID
+========================================= */
+
+.ec-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(24px, 3.5vw, 48px);
+}
+
+.ec-hero-copy {
+  min-width: 0;
+  max-width: 590px;
+}
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.ec-eyebrow {
+  display: inline-block;
+  margin-bottom: 13px;
+  color: var(--red);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.ec-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3.3rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: #17171c;
+}
+
+.ec-hero h1 em {
+  display: block;
+  margin-top: 3px;
+  color: var(--red);
+  font-style: normal;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.ec-hero-copy > p {
+  max-width: 470px;
+  margin: 17px 0 22px;
+  color: var(--muted);
+  font-size: 0.89rem;
+  line-height: 1.7;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.ec-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 11px;
+}
+
+.ec-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  min-height: 42px;
+
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+
+  font-size: 0.70rem;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.ec-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Primary Button */
+
+.ec-btn-red {
+  width: 116px;
+  min-width: 116px;
+  color: #ffffff;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.ec-btn-red:hover {
+  background: var(--red-bright);
+  border-color: var(--red-bright);
+}
+
+/* Secondary Button */
+
+.ec-btn-dark {
+  width: 145px;
+  min-width: 145px;
+  color: #25252b;
+  background: #ffffff;
+  border-color: #dedee2;
+}
+
+.ec-btn-dark:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: #ffffff;
+}
+
+/* =========================================
+   HERO POINTS
+========================================= */
+
+.ec-hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 17px;
+  margin: 22px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.ec-hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #43434d;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.ec-hero-points i {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  box-shadow: 0 0 0 3px rgba(212, 25, 42, 0.11);
+}
+
+/* =========================================
+   HERO VISUAL
+========================================= */
+
+.ec-hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 510px;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  margin: -8px 0 0 auto;
+  isolation: isolate;
+}
+
+.ec-hero-glow {
+  position: absolute;
+  z-index: -1;
+  inset: 15% 8%;
+  border-radius: 50%;
+  background: rgba(212, 25, 42, 0.09);
+  filter: blur(65px);
+}
+
+.ec-object {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ec-object img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Central Rotating Wheel */
+
+.ec-wheel {
+  z-index: 1;
+  top: 18%;
+  left: 17%;
+  width: 66%;
+  height: 66%;
+  transform-origin: center;
+  animation: ecWheelRotate 24s linear infinite;
+}
+
+/* Floating Cube */
+
+.ec-cube {
+  z-index: 2;
+  top: 5%;
+  left: 5%;
+  width: 23%;
+  height: 23%;
+  animation: ecCubeFloat 6s ease-in-out infinite;
+}
+
+/* Floating Half Sphere */
+
+.ec-halfsphere {
+  z-index: 2;
+  right: 3%;
+  bottom: 7%;
+  width: 29%;
+  height: 29%;
+  animation: ecSphereFloat 7s ease-in-out infinite;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes ecWheelRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ecCubeFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+}
+
+@keyframes ecSphereFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .ec-hero {
+    padding: 30px 0 35px;
+    margin-top: -25px;
+  }
+
+  .ec-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .ec-hero-copy {
+    max-width: 650px;
+  }
+
+  .ec-hero-visual {
+    max-width: 420px;
+    margin: -4px auto 0;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 560px) {
+  .ec-hero {
+    padding: 25px 0 30px;
+    margin-top: -15px;
+  }
+
+  .ec-eyebrow {
+    margin-bottom: 12px;
+    font-size: 0.64rem;
+    letter-spacing: 0.15em;
+  }
+
+  .ec-hero h1 {
+    font-size: clamp(1.85rem, 7.5vw, 2.4rem);
+    line-height: 1.1;
+  }
+
+  .ec-hero-copy > p {
+    margin: 15px 0 19px;
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .ec-actions {
+    gap: 9px;
+  }
+
+  .ec-btn {
+    height: 40px;
+    min-height: 40px;
+    padding: 0 8px;
+    font-size: 0.68rem;
+  }
+
+  .ec-btn-red {
+    width: 116px;
+    min-width: 116px;
+  }
+
+  .ec-btn-dark {
+    width: 145px;
+    min-width: 145px;
+  }
+
+  .ec-hero-points {
+    gap: 10px 14px;
+    margin-top: 19px;
+    padding-top: 14px;
+  }
+
+  .ec-hero-points li {
+    font-size: 0.7rem;
+  }
+
+  .ec-hero-visual {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .ec-wheel {
+    top: 19%;
+    left: 16%;
+    width: 68%;
+    height: 68%;
+  }
+
+  .ec-cube {
+    top: 5%;
+    left: 4%;
+    width: 23%;
+    height: 23%;
+  }
+
+  .ec-halfsphere {
+    right: 3%;
+    bottom: 7%;
+    width: 29%;
+    height: 29%;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-wheel,
+  .ec-cube,
+  .ec-halfsphere {
+    animation: none;
+  }
+
+  .ec-btn {
+    transition: none;
+  }
+}

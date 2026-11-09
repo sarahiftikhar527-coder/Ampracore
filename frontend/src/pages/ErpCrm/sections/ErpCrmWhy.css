@@ -1,0 +1,484 @@
+
+/* =========================================
+   ERP / CRM WHY US
+========================================= */
+
+.ec-why {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ---------- Background decoration removed ---------- */
+
+.ec-why-blob,
+.ec-why-grid-bg {
+  display: none;
+}
+
+.ec-why .ec-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Layout ---------- */
+
+.ec-why-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 64px;
+  align-items: start;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.ec-why-sticky {
+  position: sticky;
+  top: 110px;
+  text-align: left;
+}
+
+.ec-why-sticky h2 {
+  margin: 24px 0 18px;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #17171c;
+}
+
+.ec-why-sticky h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #a40012, #ff4d5e, #a40012);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: ecWhyShine 4s linear infinite;
+}
+
+.ec-why-sticky .ec-lead {
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ---------- Stats ---------- */
+
+.ec-why-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+  max-width: 480px;
+}
+
+.ec-why-stat {
+  padding: 16px 14px;
+  border: 1px solid rgba(164, 0, 18, 0.12);
+  border-radius: 18px;
+  background: #ffffff;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.ec-why-stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(164, 0, 18, 0.3);
+  box-shadow: 0 16px 30px rgba(164, 0, 18, 0.12);
+}
+
+.ec-why-stat strong {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--red, #d4192a);
+}
+
+.ec-why-stat span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--muted, #6b6b6b);
+}
+
+/* ---------- Orbit ---------- */
+
+.ec-why-orbit {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-top: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.ec-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(212, 25, 42, 0.3);
+  animation: ecWhySpin linear infinite;
+}
+
+.ec-ring i {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--red, #d4192a);
+  box-shadow:
+    0 0 0 5px rgba(212, 25, 42, 0.15),
+    0 0 18px rgba(212, 25, 42, 0.6);
+}
+
+.ec-ring--1 {
+  width: 100px;
+  height: 100px;
+  animation-duration: 8s;
+}
+
+.ec-ring--2 {
+  width: 160px;
+  height: 160px;
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+.ec-ring--3 {
+  width: 220px;
+  height: 220px;
+  animation-duration: 22s;
+}
+
+.ec-why-core {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d5e, #a40012);
+  box-shadow: 0 14px 30px rgba(164, 0, 18, 0.35);
+  animation: ecWhyPulse 2.6s ease-in-out infinite;
+}
+
+/* ---------- Cards Grid ---------- */
+
+.ec-why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.ec-why-grid .ec-reveal {
+  display: flex;
+}
+
+/* Staggered look on desktop */
+
+.ec-why-grid > *:nth-child(even) {
+  margin-top: 48px;
+}
+
+.ec-why-grid > *:nth-child(odd):last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Card ---------- */
+
+.ec-why-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  padding: 34px 30px 38px;
+  border: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(164, 0, 18, 0.06);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease;
+}
+
+/* Mouse spotlight */
+
+.ec-why-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(212, 25, 42, 0.14),
+    transparent 60%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.ec-why-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(164, 0, 18, 0.25);
+  box-shadow: 0 32px 60px rgba(164, 0, 18, 0.16);
+}
+
+.ec-why-card:hover::before {
+  opacity: 1;
+}
+
+/* Big outlined number */
+
+.ec-why-index {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(212, 25, 42, 0.22);
+  transition:
+    -webkit-text-stroke-color 0.35s ease,
+    transform 0.45s ease;
+}
+
+.ec-why-card:hover .ec-why-index {
+  -webkit-text-stroke-color: rgba(212, 25, 42, 0.6);
+  transform: translateY(-4px) scale(1.06);
+}
+
+/* Icon */
+
+.ec-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  color: var(--red, #d4192a);
+  background: #fbe9ea;
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.ec-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(212, 25, 42, 0.45);
+  opacity: 0;
+}
+
+.ec-why-card:hover .ec-icon {
+  color: #fff;
+  background: linear-gradient(135deg, #ff4d5e, #a40012);
+  box-shadow: 0 14px 28px rgba(164, 0, 18, 0.35);
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.ec-why-card:hover .ec-icon::after {
+  animation: ecWhyRipple 1.4s ease-out infinite;
+}
+
+/* Text */
+
+.ec-why-card h3 {
+  margin: 28px 0 12px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #17171c;
+}
+
+.ec-why-card p {
+  margin: 0;
+  color: var(--muted, #6b6b6b);
+  font-size: 0.97rem;
+  line-height: 1.8;
+}
+
+/* Bottom animated line */
+
+.ec-why-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #a40012, #ff4d5e);
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ec-why-card:hover .ec-why-line {
+  width: 100%;
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes ecWhyFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(24px, -30px) scale(1.08);
+  }
+}
+
+@keyframes ecWhyShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes ecWhySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ecWhyPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ecWhyRipple {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .ec-why-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .ec-why-sticky {
+    position: static;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ec-why-sticky .ec-lead,
+  .ec-why-stats {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ec-why-orbit {
+    margin: 36px auto 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .ec-why-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .ec-why-grid > *:nth-child(even) {
+    margin-top: 0;
+  }
+
+  .ec-why-card {
+    padding: 28px 24px 32px;
+    border-radius: 24px;
+  }
+
+  .ec-why-index {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .ec-why-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .ec-why-stat {
+    padding: 12px 8px;
+    border-radius: 14px;
+  }
+
+  .ec-why-stat strong {
+    font-size: 1.25rem;
+  }
+
+  .ec-why-stat span {
+    font-size: 0.7rem;
+  }
+
+  .ec-why-orbit {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ec-ring--3 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ec-ring--2 {
+    width: 134px;
+    height: 134px;
+  }
+
+  .ec-ring--1 {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+/* Touch devices */
+
+@media (hover: none) {
+  .ec-why-card:hover {
+    transform: none;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-why-blob,
+  .ec-ring,
+  .ec-why-core,
+  .ec-why-sticky h2 em,
+  .ec-why-card:hover .ec-icon::after {
+    animation: none;
+  }
+}

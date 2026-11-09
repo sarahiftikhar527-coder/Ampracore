@@ -1,0 +1,166 @@
+
+/* =========================================
+   SCROLL COLOR REVEAL
+   LUXURY EDITORIAL TYPOGRAPHY
+========================================= */
+
+.scroll-reveal-section {
+  --reveal-idle: #d8d8d8;
+  --reveal-active: #191919;
+  --reveal-brand: #be0919;
+
+  width: 100%;
+  padding: 85px 7% 100px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.scroll-reveal-section *,
+.scroll-reveal-section *::before,
+.scroll-reveal-section *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.scroll-reveal-container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   LUXURY EDITORIAL TYPOGRAPHY
+========================================= */
+
+.scroll-reveal-paragraph {
+  max-width: 1080px;
+  margin: 0;
+
+  font-family: "Bodoni MT", "Didot", "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.35;
+  letter-spacing: -0.045em;
+
+  text-wrap: pretty;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================
+   WORD REVEAL
+========================================= */
+
+.reveal-word {
+  display: inline-block;
+
+  color: var(--reveal-idle);
+
+  transform: translateY(4px);
+
+  transition:
+    color 0.45s ease,
+    transform 0.45s ease;
+}
+
+.reveal-word.is-active {
+  color: var(--reveal-active);
+  transform: translateY(0);
+}
+
+/* =========================================
+   BRAND HIGHLIGHT
+========================================= */
+
+.reveal-word.is-brand.is-active {
+  color: var(--reveal-brand);
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1440px) {
+  .scroll-reveal-section {
+    padding: 100px 8% 115px;
+  }
+
+  .scroll-reveal-paragraph {
+    max-width: 1150px;
+    font-size: 54px;
+    line-height: 1.32;
+    letter-spacing: -0.05em;
+  }
+}
+
+/* =========================================
+   LAPTOP
+========================================= */
+
+@media (max-width: 1200px) {
+  .scroll-reveal-section {
+    padding: 75px 6% 90px;
+  }
+
+  .scroll-reveal-paragraph {
+    font-size: clamp(30px, 3.8vw, 45px);
+    line-height: 1.4;
+    letter-spacing: -0.04em;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .scroll-reveal-section {
+    padding: 55px 6% 70px;
+  }
+
+  .scroll-reveal-paragraph {
+    font-size: clamp(28px, 5vw, 38px);
+    line-height: 1.45;
+    letter-spacing: -0.035em;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .scroll-reveal-section {
+    padding: 42px 20px 55px;
+  }
+
+  .scroll-reveal-paragraph {
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+  }
+
+  .reveal-word.is-brand.is-active {
+    font-weight: 700;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word {
+    transition: none;
+    transform: none;
+  }
+}

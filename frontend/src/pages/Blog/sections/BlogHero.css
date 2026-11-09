@@ -1,0 +1,222 @@
+
+/* =========================================
+   BLOG HERO - CINEMATIC VIDEO
+========================================= */
+
+.blog-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(450px, 78vh, 780px);
+  min-height: 450px;
+  overflow: hidden;
+  background: #090909;
+}
+
+/* ---------- Background Video ---------- */
+
+.blog-hero-video {
+  position: absolute;
+  inset: -8px;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.blog-hero-bg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(2px);
+  transform: scale(1.035);
+}
+
+/* ---------- Dark Overlay ---------- */
+
+.blog-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.30) 0%,
+    rgba(0, 0, 0, 0.43) 50%,
+    rgba(0, 0, 0, 0.58) 100%
+  );
+}
+
+/* ---------- Hero Content ---------- */
+
+.blog-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* ---------- Heading Animation ---------- */
+
+.blog-hero-title-wrap {
+  overflow: hidden;
+  padding: 10px 15px;
+}
+
+.blog-hero-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.10em;
+  text-indent: 0.10em;
+
+  opacity: 0;
+  transform: translateY(65px);
+  filter: blur(10px);
+
+  animation: blogTitleReveal 1.8s
+    cubic-bezier(0.2, 0.75, 0.25, 1) 0.35s forwards;
+}
+
+@keyframes blogTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(65px);
+    filter: blur(10px);
+    letter-spacing: 0.20em;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    letter-spacing: 0.10em;
+  }
+}
+
+/* ---------- Animated Red Line ---------- */
+
+.blog-hero-line {
+  display: block;
+  width: 0;
+  height: 3px;
+  margin-top: 24px;
+  background: #df101e;
+  border-radius: 10px;
+  animation: blogLineReveal 1.1s ease 1.35s forwards;
+}
+
+@keyframes blogLineReveal {
+  to {
+    width: 85px;
+  }
+}
+
+/* ---------- Bottom Label ---------- */
+
+.blog-hero-bottom {
+  position: absolute;
+  right: 6%;
+  bottom: 35px;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  animation: blogBottomReveal 1s ease 1.7s forwards;
+}
+
+@keyframes blogBottomReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Tablet Responsive ---------- */
+
+@media (max-width: 768px) {
+  .blog-hero {
+    height: 65vh;
+    min-height: 420px;
+  }
+
+  .blog-hero-bg {
+    filter: blur(2px);
+  }
+
+  .blog-hero-title {
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    letter-spacing: 0.08em;
+    text-indent: 0.08em;
+  }
+
+  @keyframes blogTitleReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(45px);
+      filter: blur(10px);
+      letter-spacing: 0.16em;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+      letter-spacing: 0.08em;
+    }
+  }
+}
+
+/* ---------- Mobile Responsive ---------- */
+
+@media (max-width: 480px) {
+  .blog-hero {
+    height: 58vh;
+    min-height: 370px;
+  }
+
+  .blog-hero-title {
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    text-indent: 0.06em;
+  }
+
+  .blog-hero-line {
+    margin-top: 18px;
+  }
+
+  .blog-hero-bottom {
+    right: 0;
+    bottom: 23px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.62rem;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-hero-title,
+  .blog-hero-line,
+  .blog-hero-bottom {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .blog-hero-line {
+    width: 85px;
+  }
+}
